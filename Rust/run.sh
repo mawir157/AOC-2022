@@ -5,8 +5,8 @@ else
   day=0
 fi
 
-cargo build
-cargo run $day
+cargo build --quiet
+cargo run --quiet $day 
 
 if [ $day -lt 1 ]
 then

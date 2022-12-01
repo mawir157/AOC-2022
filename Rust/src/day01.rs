@@ -1,49 +1,26 @@
-use crate::advent_helper::advent_helper::read_ints;
+use crate::advent_helper::advent_helper::parse_line_groups;
 
-fn part1(v: &Vec<i64>, t: i64) -> i64
+pub fn calorie_count(elf: &String, sep: &str) -> i64
 {
-	for i in v
-	{
-		for j in v
-		{
-			if t == i + j
-			{
-				return i*j;
-			}	
-		}
-	}
-	return 0;
-}
+	let mut total: i64 = 0;
 
-fn part2(v: &Vec<i64>, t: i64) -> i64
-{
-	for i in v
-	{
-		for j in v
-		{
-			if i + j > t
-			{
-				continue;
-			}
-			for k in v
-			{
-				if t == i + j + k
-				{
-					return i*j*k;
-				}	
-			}
-		}
+	let cals = elf.split(sep);
+
+	for cal in cals {
+		total += cal.parse::<i64>().unwrap();
 	}
-	return 0;
+
+	return total;
 }
 
 pub fn run()
 {
-	// let v = read_ints("../input/input01.txt").unwrap();
-	let v = read_ints("../../AOC-2020/input/input01.txt").unwrap();
+	let elfs = parse_line_groups("../input/input01.txt", "|");
+	let mut cals: Vec<_> = elfs.iter().map(|x| calorie_count(x, "|")).collect();
+	cals.sort_by(|a, b| b.cmp(a));
 
 	println!("Day 1");
-	println!("  Part 1: {}", part1(&v, 2020));
-	println!("  Part 2: {}", part2(&v, 2020));
+	println!("  Part 1: {}", cals[0]);
+	println!("  Part 2: {}", cals[0] + cals[1] + cals[2]);
 	return;
 }
