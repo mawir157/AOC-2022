@@ -14,8 +14,11 @@ if' False _ y = y
 zipWithFn :: (a -> b) -> [a] -> [(a,b)]
 zipWithFn fn as  = zip as (map fn as)
 
-printSoln :: (Show a) => Integer -> a -> IO()
-printSoln n s = putStrLn ("  Part " ++ show n ++ ": " ++ show s)
+printSoln :: (Show a, Show b) => Integer -> a -> b -> IO()
+printSoln d p1 p2 = putStrLn $ unlines [l0, l1, l2]
+  where l0 = "Day " ++ (show d)
+        l1 = "  Part 1: "  ++ (show p1)
+        l2 = "  Part 2: "  ++ (show p2)
 
 tuplify2 :: [a] -> (a,a)
 tuplify2 [x,y] = (x,y)
