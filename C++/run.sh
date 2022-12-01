@@ -9,9 +9,9 @@ if [ $day -gt 0 ]
 then
 	if test -f Day$day.cpp;
 	then
-		g++ *.cpp -O2 -o aoc2021 -std=c++17 -DDAY$day -Wall
-		./aoc2021
-		rm -rf aoc2021
+		g++ *.cpp -O2 -o aoc2022 -std=c++17 -DDAY$day -Wall
+		./aoc2022
+		rm -rf aoc2022
 	else
 		echo "Day" $day "does not exist"
 	fi
@@ -32,9 +32,9 @@ else
 			fi
 		fi
 	done
-	g++ *.cpp -O2 -o aoc2021 -std=c++17 $COMPILERSTRING
-	./aoc2021
-	rm -rf aoc2021
+	g++ *.cpp -O2 -o aoc2022 -std=c++17 $COMPILERSTRING
+	./aoc2022
+	rm -rf aoc2022
 	if [ "$missing" != "" ]
 	then
 		echo "Missing days = ["$missing"]"
