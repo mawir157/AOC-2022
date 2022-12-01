@@ -2,15 +2,7 @@ use crate::advent_helper::advent_helper::parse_line_groups;
 
 pub fn calorie_count(elf: &String, sep: &str) -> i64
 {
-	let mut total: i64 = 0;
-
-	let cals = elf.split(sep);
-
-	for cal in cals {
-		total += cal.parse::<i64>().unwrap();
-	}
-
-	return total;
+	return elf.split(sep).map(|x| x.parse::<i64>().unwrap()).sum::<i64>();
 }
 
 pub fn run()
@@ -21,6 +13,6 @@ pub fn run()
 
 	println!("Day 1");
 	println!("  Part 1: {}", cals[0]);
-	println!("  Part 2: {}", cals[0] + cals[1] + cals[2]);
+	println!("  Part 2: {}", cals.iter().take(3).sum::<i64>());
 	return;
 }
