@@ -7,11 +7,9 @@ pub fn score(round: &String) -> (i64, i64)
 	let player2:i64 = (players[1].chars().next().unwrap() as i64) - 88;
 
 	let result1 = (player2 - player1 + 4) % 3;
-	let final1 = 3 * result1;
-	let final2 = 3 * player2;
-	let play2 = (player1 + 3 + (player2 - 1)) % 3;
+	let play2 = (player1 + player2 + 2) % 3;
 
-	return (1 + player2 + final1, 1 + play2 + final2);
+	return (1 + player2 + (3 * result1), 1 + play2 + (3 * player2));
 }
 
 pub fn run()
