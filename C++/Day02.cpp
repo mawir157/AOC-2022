@@ -8,7 +8,7 @@ namespace Day02
 		const int player2 = int(players[1][0]) - 88;
 
 		const auto result1 = (player2 - player1 + 4) % 3;
-		const int final1 = 3*(result1);
+		const int final1 = 3 * result1;
 
 		const int final2 = 3 * player2;
 
@@ -29,7 +29,7 @@ namespace Day02
 			part2 += p.second;
 		}
 		
-		AH::PrintSoln(1, part1, part2);
+		AH::PrintSoln(2, part1, part2);
 
 		return 0;
 	}
