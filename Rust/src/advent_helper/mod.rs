@@ -4,6 +4,8 @@ pub mod advent_helper
 	use std::{
 		fs::File,
 		io::{prelude::*, BufReader, Error, ErrorKind},
+		fmt::Debug,
+		fmt::Display,
 	};
 
 	pub fn read_ints(path: &str) -> Result<Vec<i64>, Error>
@@ -61,5 +63,12 @@ pub mod advent_helper
 		v.push(temp.clone());
 
 		return v;
+	}
+
+	pub fn print_soln<T: Debug + Display>(day: i64, part1: T, part2: T)
+	{
+		println!("Day {}", day);
+		println!("  Part 1: {}", part1);
+		println!("  Part 2: {}", part2);
 	}
 }

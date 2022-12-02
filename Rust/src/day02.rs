@@ -1,4 +1,5 @@
 use crate::advent_helper::advent_helper::read_strs;
+use crate::advent_helper::advent_helper::print_soln;
 
 pub fn score(round: &String) -> (i64, i64)
 {
@@ -18,8 +19,6 @@ pub fn run()
 	let scores: Vec<(i64, i64)> = rounds.iter().map(|x| score(x)).collect();
 	let result: (i64, i64) = scores.iter().fold((0,0), |mut base, &x| {base.0 += x.0; base.1 += x.1; base});
 
-	println!("Day 2");
-	println!("  Part 1: {}", result.0);
-	println!("  Part 2: {}", result.1);
+	print_soln(2, result.0, result.1);
 	return;
 }
