@@ -2,7 +2,7 @@ import AdventHelper
 
 import Data.List (sort)
 import Data.List.Split (splitOn)
- 
+
 calorieCount :: String -> String -> Integer
 calorieCount sep s = sum (map read $ splitOn sep s :: [Integer])
 

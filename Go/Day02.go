@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func score(round string)  (int, int) {
+func score(round string) (int, int) {
 	pair := strings.Split(round, " ")
 	player1, player2 := int(AH.FirstRune(pair[0])) - 65, int(AH.FirstRune(pair[1])) - 88
 

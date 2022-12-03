@@ -1,7 +1,7 @@
 use crate::advent_helper::advent_helper::parse_line_groups;
 use crate::advent_helper::advent_helper::print_soln;
 
-pub fn calorie_count(elf: &String, sep: &str) -> i64
+fn calorie_count(elf: &String, sep: &str) -> i64
 {
 	return elf.split(sep).map(|x| x.parse::<i64>().unwrap()).sum::<i64>();
 }

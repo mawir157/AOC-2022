@@ -1,7 +1,7 @@
 use crate::advent_helper::advent_helper::read_strs;
 use crate::advent_helper::advent_helper::print_soln;
 
-pub fn score(round: &String) -> (i64, i64)
+fn score(round: &String) -> (i64, i64)
 {
 	let players: Vec<String> = round.split(" ").map(|s| s.to_string()).collect();
 	let player1:i64 = (players[0].chars().next().unwrap() as i64) - 65;
@@ -16,8 +16,12 @@ pub fn score(round: &String) -> (i64, i64)
 pub fn run()
 {
 	let rounds = read_strs("../input/input02.txt").unwrap();
-	let scores: Vec<(i64, i64)> = rounds.iter().map(|x| score(x)).collect();
-	let result: (i64, i64) = scores.iter().fold((0,0), |mut base, &x| {base.0 += x.0; base.1 += x.1; base});
+	let result: (i64, i64) = rounds.
+		iter().
+		map(|x| score(x)).
+		collect::<Vec<(i64, i64)>>().
+		iter().
+		fold((0,0), |mut b, &x| {b.0 += x.0; b.1 += x.1; b});
 
 	print_soln(2, result.0, result.1);
 	return;

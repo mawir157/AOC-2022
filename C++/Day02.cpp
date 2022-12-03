@@ -2,7 +2,9 @@
 
 namespace Day02
 {
-	std::pair<int, int> score(const std::string & s) {
+	
+	std::pair<int, int> score(const std::string & s)
+	{
 		const auto players = AH::Split(s, ' ');
 		const int player1 = int(players[0][0]) - 65;
 		const int player2 = int(players[1][0]) - 88;
@@ -23,7 +25,8 @@ namespace Day02
 		int part1 = 0;
 		int part2 = 0;
 
-		for (auto & r : rounds) {
+		for (auto & r : rounds)
+		{
 			const auto p = score(r);
 			part1 += p.first;
 			part2 += p.second;

@@ -3,7 +3,8 @@
 namespace Day01
 {
 
-	int calorieCount(const std::string cals, const char sep) {
+	int calorieCount(const std::string cals, const char sep)
+	{
 		int total = 0;
 		const auto cs = AH::Split(cals, sep);
 		for (auto & c : cs) {
