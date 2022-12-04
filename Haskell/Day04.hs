@@ -3,7 +3,7 @@ import AdventHelper
 import Data.List.Split (splitOn)
 
 check :: String -> (Bool, Bool)
-check s = (((l1 <= r1) && (r2 <= l2)) || ((r1 <= l1) && (l2 <= r2)), not ((l2 < r1) || (r2 < l1)))
+check s = (((l1 <= r1) && (r2 <= l2)) || ((r1 <= l1) && (l2 <= r2)), ((l2 >= r1) && (r2 >= l1)))
   where [lhs,rhs] = splitOn "," s
         [l1,l2] = map read (splitOn "-" lhs) :: [Integer]
         [r1,r2] = map read (splitOn "-" rhs) :: [Integer]
