@@ -43,7 +43,7 @@ func score(bags []string) (total int) {
 
 func assignBadges(bags []string) (total int) {
 	total = 0
-	for i := 0; i < len(bags); i = i + 3 {
+	for i := 0; i < len(bags); i += 3 {
 		i1 := stringIntersection(bags[i], bags[i+1])
 		i2 := stringIntersection(bags[i+2], i1)
 
