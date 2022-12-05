@@ -7,14 +7,12 @@ parseChunks :: String -> [Char]
 parseChunks (s:c:ss) = if' (s == ' ') [] [c]
 
 parseInput :: [[Char]] -> String -> [[Char]]
-parseInput xs s = map (\(lst, str) -> lst ++ parseChunks str) z
+parseInput xs s = map (\(lst, str) -> lst ++ parseChunks str) (zip xs ss)
   where ss = chunksOf 4 s
-        z = zip xs ss
 
 parseRules :: String -> (Int, Int, Int)
-parseRules s = t'
+parseRules s = (read (t!!1) :: Int, read (t!!3) :: Int, read (t!!5) :: Int)
   where t = splitOn " " s
-        t' = (read (t!!1) :: Int, read (t!!3) :: Int, read (t!!5) :: Int)
 
 applyMove :: Bool -> [[Char]] -> (Int, Int, Int) -> [[Char]]
 applyMove b ss (n, f, t) =  map fst ts'
@@ -26,8 +24,7 @@ applyMove b ss (n, f, t) =  map fst ts'
 
 main = do
   f <- readFile "../input/input05.txt"
-  let temp = ["", "", "", "", "", "", "", "", ""]
-  let blocks = foldl' (parseInput) temp $ take 8 $ lines f
+  let blocks = foldl' (parseInput) (replicate 9 "") $ take 8 $ lines f
   let moves = map (parseRules) $ drop 10 $ lines f
   let part1 = foldl' (applyMove True) blocks moves
   let part2 = foldl' (applyMove False) blocks moves
