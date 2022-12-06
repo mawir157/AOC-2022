@@ -146,6 +146,17 @@ func FinalRune(str string) (r rune) {
   return
 }
 
+// RuneAr
+func RuneAt(str string, n int) (r rune) {
+	i := 0
+  for i, r = range str {
+  	if i == n {
+  		return
+  	}
+  }
+  return
+}
+
 // Tail
 func TrimFirstRune(s string) string {
 	rs := []rune(s)
