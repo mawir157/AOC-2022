@@ -15,17 +15,16 @@ type Node struct {
     children []*Node
 }
 
-
 func (n *Node) dirSize() int {
-		if n.file {
-			return n.size
-		} else {
-			subsum := 0
-			for _, c := range n.children {
-				subsum += c.dirSize()
-			}
-    	return subsum
-		} 
+	if n.file {
+		return n.size
+	} else {
+		subsum := 0
+		for _, c := range n.children {
+			subsum += c.dirSize()
+		}
+  	return subsum
+	} 
 }
 
 func changeDir(s string, n *Node) (*Node) {
@@ -39,7 +38,7 @@ func changeDir(s string, n *Node) (*Node) {
 			return c
 		}
 	}
-
+	// if this gets hit we're screwed...
 	return n
 }
 
@@ -65,32 +64,20 @@ func parseCLI(ss []string, n *Node) {
 	}
 }
 
-func (n *Node)part1(size int) (int) {
-	counter := 0
-	if n.file {
-		return 0
-	} else {
-		if n.dirSize() < size {
-			counter += n.dirSize()
-		}
-	}
-
-	for _, c := range n.children {
-		counter += c.part1(size)
-	}
-
-	return counter
-}
-
-func (n *Node)part2(m map[string]int) {
+func (n *Node)getDirSizes(m map[string]int) {
 	if n.file {
 		return
 	} else {
-		m[n.name] = n.dirSize()
+
+		full_name := "root"
+		if n.parent != nil {
+			full_name = n.parent.name + "|" + n.name
+		}
+		m[full_name] = n.dirSize()
 	}
 
 	for _, c := range n.children {
-		c.part2(m)
+		c.getDirSizes(m)
 	}
 
 	return
@@ -105,16 +92,21 @@ func main() {
 	toDelete := root.dirSize() - 40000000
 
 	dirSizes := make(map[string]int)
-	root.part2(dirSizes)
+	root.getDirSizes(dirSizes)
 
 	part2 := root.dirSize()
+	part1 := 0
 	for _, v := range dirSizes {
 		if (v > toDelete) && (v < part2) {
 			part2 = v
 		}
+		if (v <= 100000) {
+			part1 += v
+		}
 	}
 
-	AH.PrintSoln(7, root.part1(100000), part2)
+
+	AH.PrintSoln(7, part1, part2)
 
 	return
 }
