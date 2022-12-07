@@ -13,7 +13,6 @@ namespace Day07
 
 		int dirSize() const;
 		Node * changeDir(const std::string s);
-		void parseCLI(const std::vector<std::string> ss);
 		void addNode(const std::string name, const unsigned int size, const bool is_file);
 		void getDirSizes(std::map<std::string, unsigned int> & m) const;
 	};
