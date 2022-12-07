@@ -68,7 +68,6 @@ func (n *Node)getDirSizes(m map[string]int) {
 	if n.file {
 		return
 	} else {
-
 		full_name := "root"
 		if n.parent != nil {
 			full_name = n.parent.name + "|" + n.name
@@ -89,13 +88,12 @@ func main() {
 
 	parseCLI(cli_instructions[1:], &root)
 
-	toDelete := root.dirSize() - 40000000
-
 	dirSizes := make(map[string]int)
 	root.getDirSizes(dirSizes)
 
-	part2 := root.dirSize()
+	part2 := dirSizes["root"]
 	part1 := 0
+	toDelete := dirSizes["root"] - 40000000
 	for _, v := range dirSizes {
 		if (v > toDelete) && (v < part2) {
 			part2 = v
@@ -104,7 +102,6 @@ func main() {
 			part1 += v
 		}
 	}
-
 
 	AH.PrintSoln(7, part1, part2)
 
