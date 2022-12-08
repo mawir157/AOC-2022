@@ -93,8 +93,7 @@ func scenicScore(forest map[Pos]int, xMax int, yMax int)  int {
 			for dx := k.x - 1; dx >= 0; dx-- {
 				ps := Pos{dx, y}
 				leftView++
-				if forest[ps] < height {
-				} else {
+				if forest[ps] >= height {
 					break
 				}
 			} 
@@ -107,8 +106,7 @@ func scenicScore(forest map[Pos]int, xMax int, yMax int)  int {
 			for dx := k.x + 1; dx < xMax; dx++ {
 				ps := Pos{dx, y}
 				rightView++
-				if forest[ps] < height {
-				} else {
+				if forest[ps] >= height {
 					break
 				}
 			} 
@@ -121,8 +119,7 @@ func scenicScore(forest map[Pos]int, xMax int, yMax int)  int {
 			for dy := k.y - 1; dy >= 0; dy-- {
 				ps := Pos{x, dy}
 				upView++
-				if forest[ps] < height {
-				} else {
+				if forest[ps] >= height {
 					break
 				}
 			} 
@@ -135,8 +132,7 @@ func scenicScore(forest map[Pos]int, xMax int, yMax int)  int {
 			for dy := k.y + 1; dy < yMax; dy++ {
 				ps := Pos{x, dy}
 				downView++
-				if forest[ps] < height {
-				} else {
+				if forest[ps] >= height {
 					break
 				}
 			} 
