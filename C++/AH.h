@@ -25,4 +25,8 @@ namespace AH
 		                                     const std::string delim);
 	// Maths
 	uint64_t IntPow(const uint64_t x, const uint64_t p);
+	template <typename T> int sgn(T val) {
+		return (T(0) < val) - (val < T(0));
+	}
+
 }
