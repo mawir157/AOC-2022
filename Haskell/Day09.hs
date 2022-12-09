@@ -3,10 +3,10 @@ import AdventHelper
 import Data.List.Split (splitOn)
 import Data.List (nub, scanl')
 
-parseInput :: String -> (String, Integer)
+parseInput :: String -> (String, Int)
 parseInput s = (d, n')
   where [d, n] = splitOn " " s
-        n' = read n :: Integer
+        n' = read n :: Int
 
 updateT :: (Integer, Integer) -> (Integer, Integer) -> (Integer, Integer)
 updateT (x1, y1) (x0, y0)  = if' ((abs dx > 1) || (abs dy > 1)) (x0 + signum dx, y0 + signum dy) (x0, y0)
@@ -26,9 +26,9 @@ moveHead (x, y) d
 applyMove :: [(Integer, Integer)] -> String -> [(Integer, Integer)]
 applyMove (c:cs) d = pullChain ((moveHead c d):cs)
 
-expandMoves :: [(String, Integer)] -> [String]
+expandMoves :: [(String, Int)] -> [String]
 expandMoves [] = []
-expandMoves ((d, n):xs) = (replicate (fromIntegral n) d) ++ expandMoves xs
+expandMoves ((d, n):xs) = (replicate n d) ++ expandMoves xs
 
 main = do
   f <- readFile "../input/input09.txt"
