@@ -34,7 +34,7 @@ func updateT(posT Pos, posH Pos) Pos {
 }
 
 func pullChain(chain []Pos, histTail map[Pos]int, m Move) ([]Pos) {
-		for i := 0; i < m.n; i++ {
+	for i := 0; i < m.n; i++ {
 		switch m.d {
 			case "U":
 				chain[0].y -= 1
@@ -66,7 +66,7 @@ func main() {
 	hist2 := make(map[Pos]int)
 	chain1 := []Pos{Pos{0,0}, Pos{0,0}}
 	chain2 := []Pos{Pos{0,0}, Pos{0,0}, Pos{0,0}, Pos{0,0}, Pos{0,0}, Pos{0,0},
-	               Pos{0,0}, Pos{0,0}, Pos{0,0}, Pos{0,0}}
+	                Pos{0,0}, Pos{0,0}, Pos{0,0}, Pos{0,0}}
 
 	for _, m := range moves {
 		chain1 = pullChain(chain1, hist1, m)
