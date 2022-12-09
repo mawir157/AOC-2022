@@ -75,3 +75,14 @@ decr :: (Ord k) => k -> Int -> Map.Map k Int -> Map.Map k Int
 decr k d m
   | fromJust (Map.lookup k m) > d = Map.adjust (\v -> v - d) k m
   | otherwise                     = Map.delete k m
+
+takeWhileInclusive :: (a -> Bool) -> [a] -> [a]
+takeWhileInclusive _ [] = []
+takeWhileInclusive p (x:xs) = x : if p x then takeWhileInclusive p xs
+                                         else []
+
+takeWhileInc :: Ord a => [a] -> [a]
+takeWhileInc (x:x':xs)
+  | x < x'    = x : takeWhileInc (x':xs)
+  | otherwise = [x]
+takeWhileInc xs = xs
