@@ -12,8 +12,6 @@ expandInstructions :: [(String, Integer)] -> [(String, Integer)]
 expandInstructions [] = []
 expandInstructions (x:xs) = x' ++ expandInstructions xs
   where x' = if' (fst x == "addx") [("noop", 0), x] [x]
-  -- | fst x == "noop" = [x] ++ expandInstructions xs
-  -- | fst x == "addx" = [("noop", 0), x] ++ expandInstructions xs
 
 sumAtIndices :: [Int] -> [Integer] -> Integer
 sumAtIndices [] _ = 0
