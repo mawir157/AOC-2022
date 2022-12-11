@@ -55,7 +55,7 @@ func parseInput(ss []string, sep string) ([]Monkey, int) {
 	return monkeys, reducer
 }
 
-func (m * Monkey) monkeyInspect(worry bool) (int, int) {
+func (m * Monkey) monkeySee(worry bool) (int, int) {
 	m.counter += 1
 
 	value := m.items[0]
@@ -86,10 +86,10 @@ func (m * Monkey) monkeyInspect(worry bool) (int, int) {
 	}
 }
 
-func monkeyPlay(ms []Monkey, worry bool, reducer int) {
+func monkeyDo(ms []Monkey, worry bool, reducer int) {
 	for index := 0; index < len(ms); index++ {
 		for _, _ = range ms[index].items {
-			val, to := ms[index].monkeyInspect(worry)
+			val, to := ms[index].monkeySee(worry)
 			ms[to].items = append(ms[to].items, val % reducer)
 		}
 	}
@@ -113,10 +113,10 @@ func main() {
 	ms2, reducer2 := parseInput(lines, "|")
 
 	for i := 0; i < 20; i++ {
-		monkeyPlay(ms1, true, reducer1)
+		monkeyDo(ms1, true, reducer1)
 	}
 	for i := 0; i < 10000; i++ {
-		monkeyPlay(ms2, false, reducer2)
+		monkeyDo(ms2, false, reducer2)
 	}
 
 	AH.PrintSoln(11, monkeyBusiness(ms1), monkeyBusiness(ms2))
