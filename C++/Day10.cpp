@@ -3,7 +3,6 @@
 namespace Day10
 {
 
-	typedef std::pair<int, int> Pos;
 	typedef std::pair<std::string, int> Instruction;
 
 	Instruction ParseInput(const std::string s)
