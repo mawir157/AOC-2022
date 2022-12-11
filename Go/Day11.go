@@ -18,7 +18,7 @@ type Monkey struct {
 	counter int
 }
 
-func parseInput(ss []string, sep string) ([]Monkey, int) {
+func parseInput(ss []string, sep string) []Monkey {
 	monkeys := []Monkey{}
 
 	for _, s := range ss {
@@ -47,12 +47,7 @@ func parseInput(ss []string, sep string) ([]Monkey, int) {
 			tempItems, tempOp, tempOpValue, tempDiv, tempTrue, tempFalse, 0})
 	}
 
-	reducer := 1
-	for _, m := range monkeys {
-		reducer *= m.test
-	} 
-
-	return monkeys, reducer
+	return monkeys
 }
 
 func (m * Monkey) monkeySee(worry bool) (int, int) {
@@ -86,7 +81,12 @@ func (m * Monkey) monkeySee(worry bool) (int, int) {
 	}
 }
 
-func monkeyDo(ms []Monkey, worry bool, reducer int) {
+func monkeyDo(ms []Monkey, worry bool) {
+	reducer := 1
+	for _, m := range ms {
+		reducer *= m.test
+	} 
+
 	for index := 0; index < len(ms); index++ {
 		for _, _ = range ms[index].items {
 			val, to := ms[index].monkeySee(worry)
@@ -109,14 +109,14 @@ func monkeyBusiness(ms []Monkey) int {
 
 func main() {
 	lines, _ := AH.ParseLineGroups("../input/input11.txt", "|")
-	ms1, reducer1 := parseInput(lines, "|")
-	ms2, reducer2 := parseInput(lines, "|")
+	ms1 := parseInput(lines, "|")
+	ms2 := parseInput(lines, "|")
 
 	for i := 0; i < 20; i++ {
-		monkeyDo(ms1, true, reducer1)
+		monkeyDo(ms1, true)
 	}
 	for i := 0; i < 10000; i++ {
-		monkeyDo(ms2, false, reducer2)
+		monkeyDo(ms2, false)
 	}
 
 	AH.PrintSoln(11, monkeyBusiness(ms1), monkeyBusiness(ms2))
