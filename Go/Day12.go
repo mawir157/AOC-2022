@@ -77,7 +77,6 @@ func minAlt(flagged map[Pos]int) (pMin Pos) {
 }
 
 func GraphTraverse (gphy [][]int, source Pos, target Pos) (dist map[Pos]int) {
-	Q := make(map[Pos]bool)
 	dist = make(map[Pos]int)
 	marked := make(map[Pos]int)
 
@@ -85,30 +84,24 @@ func GraphTraverse (gphy [][]int, source Pos, target Pos) (dist map[Pos]int) {
 	for y := 0; y < len(gphy); y++ {
 		for x := 0; x < len(gphy[0]); x++ {
 			p := Pos{x, y}
-			Q[p] = false
 			dist[p] = 1000000
 		}
 	}
-	Q[source] = true
 	dist[source] = 0
 	marked[source] = 0
 
 	for len(marked) > 0 {
 		u := minAlt(marked)
-		delete(Q, u)
-
 
 		distU := dist[u]
 
 		moves := getNbhrs(u, gphy, 1)
 
 		for _, n := range moves {
-			if _, ok := Q[n] ; ok {
-				alt := distU + 1
-				if alt < dist[n] {
-					dist[n] = alt
-					marked[n] = alt
-				}
+			alt := distU + 1
+			if alt < dist[n] {
+				dist[n] = alt
+				marked[n] = alt
 			}
 		}
 	}
