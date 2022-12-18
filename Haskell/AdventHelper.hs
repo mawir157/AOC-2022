@@ -24,6 +24,10 @@ tuplify2 :: [a] -> (a,a)
 tuplify2 [x,y] = (x,y)
 tuplify2 _ = error "Can't tuplify this array"
 
+tuplify3 :: [a] -> (a,a,a)
+tuplify3 [x,y,z] = (x,y,z)
+tuplify3 _ = error "Can't tuplify this array"
+
 concat' :: [[a]] -> [a] -> [a]
 concat' [] _ = []
 concat' [s] _ = s
