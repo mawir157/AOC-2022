@@ -17,10 +17,8 @@ parseLine s = ((sx, sy), (bx, by))
         by = read (drop 2 vv) :: Integer
 
 deadCellsOnRow :: Integer -> BeaconPair -> (Integer, Integer)
-deadCellsOnRow n ((sx, sy), (bx, by)) = (w + n', e - n')
+deadCellsOnRow n ((sx, sy), (bx, by)) = (sx - d + n', sx + d - n')
   where d = abs (sx - bx) + abs (sy - by)
-        w = sx - d
-        e = sx + d
         n' = abs (n - sy)
 
 beaconsOnRow :: Integer -> [BeaconPair] -> [Integer]
@@ -44,7 +42,7 @@ processRow :: [BeaconPair] -> Integer -> Integer
 processRow ps n = hi - lo + 1
   where deadRanges = map (deadCellsOnRow n) ps
         goodDeadRanges = filter (\(x1,x2) -> x1 <= x2) deadRanges
-        (lo, hi) = head $ combine' 100 goodDeadRanges
+        (lo, hi) = head $ combine' 2 goodDeadRanges
 
 isContiguous :: (Integer, Integer) -> [BeaconPair] -> Integer -> [(Integer, Integer)]
 isContiguous (s, t) ps n
@@ -52,7 +50,7 @@ isContiguous (s, t) ps n
   | otherwise             = reduced
   where deadRanges = map (clamp (s, t)) $ map (deadCellsOnRow n) ps
         goodDeadRanges = filter (\(x1, x2) -> x1 <= x2) deadRanges
-        reduced = combine' 100 goodDeadRanges
+        reduced = combine' 2 goodDeadRanges
 
 clamp :: (Integer, Integer) -> (Integer, Integer) -> (Integer, Integer)
 clamp (limS, limE) (x, y) = (max limS x, min limE y)
