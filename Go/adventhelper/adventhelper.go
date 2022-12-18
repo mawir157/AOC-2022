@@ -131,6 +131,14 @@ func MaxAndMin(arr []int) (max int, min int) {
 	return
 }
 
+// returns the maximum of two ints
+func MaxPair(x1 int, x2 int) int {
+	if x1 > x2 {
+		return x1
+	}
+	return x2
+}
+
 // Head
 func FirstRune(str string) (r rune) {
   for _, r = range str {
